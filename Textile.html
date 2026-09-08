@@ -1,0 +1,1988 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Textile Company | Crafting Textiles</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
+
+    <style>
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: "DM Sans", sans-serif;
+            background: #f5f2eb;
+            color: #25231f;
+            line-height: 1.6;
+        }
+
+        img {
+            width: 100%;
+            display: block;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1200px, 90%);
+            margin: auto;
+        }
+
+        .serif {
+            font-family: "Playfair Display", serif;
+        }
+
+        .section-label {
+            font-size: 11px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: #927346;
+            margin-bottom: 20px;
+        }
+
+        .section-title {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(38px, 5vw, 68px);
+            font-weight: 400;
+            line-height: 1.05;
+        }
+
+        .section-description {
+            max-width: 520px;
+            color: #77736c;
+            margin-top: 25px;
+            font-size: 15px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            padding: 15px 25px;
+            border: 1px solid #927346;
+            font-size: 11px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            transition: 0.3s ease;
+        }
+
+        .btn-primary {
+            background: #927346;
+            color: white;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        /* =========================================================
+           NAVBAR
+        ========================================================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            transition: 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(245, 242, 235, 0.96);
+            backdrop-filter: blur(12px);
+            box-shadow: 0 5px 25px rgba(0,0,0,0.05);
+        }
+
+        nav {
+            width: min(1300px, 92%);
+            margin: auto;
+            height: 85px;
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .logo {
+            font-family: "Playfair Display", serif;
+            font-size: 24px;
+            letter-spacing: 3px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-size: 11px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #927346;
+        }
+
+        .nav-button {
+            background: #927346;
+            color: white;
+            padding: 13px 20px;
+        }
+
+        .menu {
+            display: none;
+            font-size: 25px;
+        }
+
+        /* =========================================================
+           HERO
+        ========================================================= */
+
+        .hero {
+            height: 100vh;
+            min-height: 700px;
+            position: relative;
+
+            background:
+                linear-gradient(
+                    rgba(0,0,0,0.48),
+                    rgba(0,0,0,0.48)
+                ),
+                url("https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=2000&q=85")
+                center / cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: white;
+        }
+
+        .hero-content {
+            width: min(900px, 90%);
+            animation: heroReveal 1.2s ease;
+        }
+
+        .hero h1 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(50px, 8vw, 100px);
+            font-weight: 400;
+            line-height: 0.95;
+        }
+
+        .hero p {
+            max-width: 650px;
+            margin: 30px auto;
+            font-size: 16px;
+            font-weight: 300;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        .hero-buttons .btn {
+            border-color: rgba(255,255,255,0.6);
+        }
+
+        .hero-buttons .btn-primary {
+            border-color: #927346;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+
+            animation: scrollMove 2s infinite;
+        }
+
+        /* =========================================================
+           ABOUT
+        ========================================================= */
+
+        .about {
+            padding: 140px 0;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.4fr;
+            gap: 100px;
+            align-items: center;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 50px 30px;
+        }
+
+        .stat {
+            border-top: 1px solid #d6d0c5;
+            padding-top: 20px;
+        }
+
+        .stat-number {
+            font-family: "Playfair Display", serif;
+            font-size: 42px;
+        }
+
+        .stat-title {
+            margin-top: 5px;
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #77736c;
+        }
+
+        /* =========================================================
+           JOURNEY
+        ========================================================= */
+
+        .journey {
+            background: #22211f;
+            color: white;
+            padding: 130px 0;
+            overflow: hidden;
+        }
+
+        .journey-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .journey-header .section-description {
+            margin-left: auto;
+            margin-right: auto;
+            color: #aaa69e;
+        }
+
+        .journey-track {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding-bottom: 30px;
+
+            scrollbar-width: thin;
+        }
+
+        .journey-item {
+            min-width: 260px;
+            flex-shrink: 0;
+        }
+
+        .journey-image {
+            height: 260px;
+            overflow: hidden;
+            border-radius: 50%;
+        }
+
+        .journey-image img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.7s ease;
+        }
+
+        .journey-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .journey-number {
+            color: #b08b55;
+            font-size: 12px;
+            margin-top: 25px;
+        }
+
+        .journey-item h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 400;
+            margin-top: 5px;
+        }
+
+        .journey-item p {
+            color: #aaa69e;
+            font-size: 13px;
+            margin-top: 8px;
+        }
+
+        /* =========================================================
+           PRODUCTS
+        ========================================================= */
+
+        .products {
+            padding: 140px 0;
+        }
+
+        .products-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            margin-bottom: 60px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .product-card {
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+        }
+
+        .product-card img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s ease;
+        }
+
+        .product-card:hover img {
+            transform: scale(1.07);
+        }
+
+        .product-overlay {
+            position: absolute;
+            inset: 0;
+
+            background: linear-gradient(
+                transparent 40%,
+                rgba(0,0,0,0.85)
+            );
+
+            display: flex;
+            flex-direction: column;
+            justify-content: end;
+            padding: 30px;
+            color: white;
+        }
+
+        .product-overlay h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 27px;
+            font-weight: 400;
+        }
+
+        .product-overlay p {
+            font-size: 12px;
+            color: #ddd;
+            margin-top: 5px;
+        }
+
+        /* =========================================================
+           QUALITY
+        ========================================================= */
+
+        .quality {
+            padding: 130px 0;
+            background: #e9e4da;
+        }
+
+        .quality-grid {
+            display: grid;
+            grid-template-columns: 0.9fr 1.1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .quality-image {
+            height: 600px;
+            overflow: hidden;
+        }
+
+        .quality-image img {
+            height: 100%;
+            object-fit: cover;
+            transition: 1s ease;
+        }
+
+        .quality-image:hover img {
+            transform: scale(1.04);
+        }
+
+        .quality-features {
+            margin-top: 45px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .feature {
+            border-top: 1px solid #c9c1b4;
+            padding-top: 18px;
+        }
+
+        .feature h4 {
+            font-family: "Playfair Display", serif;
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+        .feature p {
+            font-size: 12px;
+            color: #77736c;
+            margin-top: 5px;
+        }
+
+        /* =========================================================
+           SUSTAINABILITY
+        ========================================================= */
+
+        .sustainability {
+            padding: 140px 0;
+        }
+
+        .sustainability-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .sustainability-header .section-description {
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .sustainability-stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #d5cec2;
+            border-bottom: 1px solid #d5cec2;
+        }
+
+        .sustainability-stat {
+            text-align: center;
+            padding: 50px 20px;
+            border-right: 1px solid #d5cec2;
+        }
+
+        .sustainability-stat:last-child {
+            border-right: none;
+        }
+
+        .sustainability-stat .number {
+            font-family: "Playfair Display", serif;
+            font-size: 45px;
+        }
+
+        .sustainability-stat p {
+            font-size: 10px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: #77736c;
+        }
+
+        /* =========================================================
+           SOCIAL IMPACT
+        ========================================================= */
+
+        .impact {
+            background: #22211f;
+            color: white;
+            padding: 140px 0;
+        }
+
+        .impact-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .impact-header .section-description {
+            margin-left: auto;
+            margin-right: auto;
+            color: #aaa69e;
+        }
+
+        .impact-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .impact-card {
+            height: 430px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .impact-card img {
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s ease;
+        }
+
+        .impact-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .impact-card::after {
+            content: "";
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(
+                transparent 45%,
+                rgba(0,0,0,0.8)
+            );
+        }
+
+        .impact-card-content {
+            position: absolute;
+            z-index: 2;
+            bottom: 25px;
+            left: 25px;
+        }
+
+        .impact-card h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 400;
+        }
+
+        /* =========================================================
+           GLOBAL
+        ========================================================= */
+
+        .global {
+            padding: 140px 0;
+        }
+
+        .global-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            align-items: center;
+            gap: 60px;
+        }
+
+        .world-map {
+            position: relative;
+            opacity: 0.7;
+        }
+
+        .world-map img {
+            filter: grayscale(1);
+        }
+
+        .map-pin {
+            position: absolute;
+            width: 12px;
+            height: 12px;
+            background: #927346;
+            border-radius: 50%;
+        }
+
+        .pin-india {
+            left: 67%;
+            top: 57%;
+        }
+
+        .pin-europe {
+            left: 51%;
+            top: 36%;
+        }
+
+        .pin-usa {
+            left: 25%;
+            top: 42%;
+        }
+
+        /* =========================================================
+           PHILOSOPHY
+        ========================================================= */
+
+        .philosophy {
+            background:
+                linear-gradient(
+                    rgba(20,20,20,0.85),
+                    rgba(20,20,20,0.85)
+                ),
+                url("https://images.unsplash.com/photo-1523381210434-271e8be1f52b?auto=format&fit=crop&w=1800&q=80")
+                center / cover;
+
+            color: white;
+            padding: 130px 0;
+        }
+
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .philosophy h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(45px, 6vw, 75px);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .philosophy h2 span {
+            color: #b08b55;
+        }
+
+        .principles {
+            display: grid;
+            gap: 40px;
+        }
+
+        .principle {
+            border-left: 1px solid #927346;
+            padding-left: 25px;
+        }
+
+        .principle h3 {
+            font-family: "Playfair Display", serif;
+            font-size: 25px;
+            font-weight: 400;
+        }
+
+        .principle p {
+            color: #aaa69e;
+            font-size: 13px;
+        }
+
+        /* =========================================================
+           FINAL CTA
+        ========================================================= */
+
+        .final-cta {
+            min-height: 550px;
+
+            background:
+                linear-gradient(
+                    rgba(245,242,235,0.82),
+                    rgba(245,242,235,0.82)
+                ),
+                url("https://images.unsplash.com/photo-1618453292507-4959ece6429e?auto=format&fit=crop&w=1800&q=80")
+                center / cover;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+        }
+
+        .final-cta h2 {
+            font-family: "Playfair Display", serif;
+            font-size: clamp(45px, 6vw, 75px);
+            font-weight: 400;
+            line-height: 1;
+        }
+
+        .final-cta p {
+            max-width: 600px;
+            margin: 25px auto 35px;
+            color: #77736c;
+        }
+
+        /* =========================================================
+           FOOTER
+        ========================================================= */
+
+        footer {
+            background: #1d1c1a;
+            color: white;
+            padding: 80px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 1.5fr repeat(3, 1fr);
+            gap: 50px;
+            padding-bottom: 60px;
+        }
+
+        .footer-logo {
+            font-family: "Playfair Display", serif;
+            font-size: 30px;
+            letter-spacing: 3px;
+        }
+
+        .footer-description {
+            color: #99958d;
+            margin-top: 20px;
+            max-width: 250px;
+            font-size: 13px;
+        }
+
+        footer h4 {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+        }
+
+        footer ul {
+            list-style: none;
+        }
+
+        footer li {
+            margin-bottom: 10px;
+            color: #99958d;
+            font-size: 13px;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid #383632;
+            padding-top: 25px;
+
+            display: flex;
+            justify-content: space-between;
+
+            color: #77736c;
+            font-size: 11px;
+        }
+
+        /* =========================================================
+           ANIMATIONS
+        ========================================================= */
+
+        @keyframes heroReveal {
+
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+
+        }
+
+        @keyframes scrollMove {
+
+            0%, 100% {
+                transform: translate(-50%, 0);
+            }
+
+            50% {
+                transform: translate(-50%, 10px);
+            }
+
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s ease;
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================================================
+           RESPONSIVE
+        ========================================================= */
+
+        @media (max-width: 900px) {
+
+            .nav-links {
+                display: none;
+            }
+
+            .menu {
+                display: block;
+            }
+
+            .about-grid,
+            .quality-grid,
+            .global-grid,
+            .philosophy-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            .product-grid,
+            .impact-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sustainability-stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .sustainability-stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .footer-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+        }
+
+        @media (max-width: 600px) {
+
+            .hero {
+                min-height: 650px;
+            }
+
+            .hero h1 {
+                font-size: 50px;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+            }
+
+            .hero-buttons .btn {
+                justify-content: center;
+            }
+
+            .about,
+            .products,
+            .quality,
+            .sustainability,
+            .impact,
+            .global {
+                padding: 90px 0;
+            }
+
+            .stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .product-grid,
+            .impact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .product-card {
+                height: 450px;
+            }
+
+            .sustainability-stats {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .quality-features {
+                grid-template-columns: 1fr;
+            }
+
+            .products-header {
+                display: block;
+            }
+
+            .products-header .btn {
+                margin-top: 25px;
+            }
+
+            .footer-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-bottom {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+        }
+
+    </style>
+</head>
+
+<body>
+
+<!-- =========================================================
+     NAVIGATION
+========================================================= -->
+
+<header id="header">
+
+    <nav>
+
+        <a href="#" class="logo">
+            TEXTILE
+        </a>
+
+        <div class="nav-links">
+
+            <a href="#about">Our Story</a>
+            <a href="#journey">Journey</a>
+            <a href="#products">Products</a>
+            <a href="#quality">Quality</a>
+            <a href="#impact">Impact</a>
+            <a href="#contact">Contact</a>
+
+            <a href="#contact" class="nav-button">
+                Enquire Now
+            </a>
+
+        </div>
+
+        <div class="menu">
+            ☰
+        </div>
+
+    </nav>
+
+</header>
+
+
+<!-- =========================================================
+     HERO
+========================================================= -->
+
+<section class="hero">
+
+    <div class="hero-content">
+
+        <div class="section-label" style="color:#d6b477;">
+            From Fibre to Fabric
+        </div>
+
+        <h1>
+            Crafting Textiles.<br>
+            Creating Possibilities.
+        </h1>
+
+        <p>
+            From carefully selected fibres to finely crafted textiles,
+            we create products built for quality, comfort and the world.
+        </p>
+
+        <div class="hero-buttons">
+
+            <a href="#journey" class="btn btn-primary">
+                Explore Our Journey →
+            </a>
+
+            <a href="#about" class="btn">
+                Discover Our Company
+            </a>
+
+        </div>
+
+    </div>
+
+    <div class="scroll-down">
+        Scroll ↓
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     ABOUT
+========================================================= -->
+
+<section class="about reveal" id="about">
+
+    <div class="container">
+
+        <div class="about-grid">
+
+            <div>
+
+                <div class="section-label">
+                    Who We Are
+                </div>
+
+                <h2 class="section-title">
+                    A Legacy Woven Into Every Thread
+                </h2>
+
+                <p class="section-description">
+                    We are a textile company committed to transforming
+                    quality fibres into textiles that combine craftsmanship,
+                    technology and purpose.
+                </p>
+
+                <br>
+
+                <a href="#" class="btn">
+                    About Our Company →
+                </a>
+
+            </div>
+
+
+            <div class="stats">
+
+                <div class="stat">
+                    <div class="stat-number">20+</div>
+                    <div class="stat-title">
+                        Years of Experience
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">XX+</div>
+                    <div class="stat-title">
+                        Production Capacity
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">XX+</div>
+                    <div class="stat-title">
+                        Markets Served
+                    </div>
+                </div>
+
+                <div class="stat">
+                    <div class="stat-number">XX+</div>
+                    <div class="stat-title">
+                        Dedicated People
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FROM THREAD TO TEXTILE
+========================================================= -->
+
+<section class="journey reveal" id="journey">
+
+    <div class="container">
+
+        <div class="journey-header">
+
+            <div class="section-label">
+                Our Journey
+            </div>
+
+            <h2 class="section-title">
+                From Thread to Textile
+            </h2>
+
+            <p class="section-description">
+                A journey of precision, passion and craftsmanship —
+                where every stage adds value to the final creation.
+            </p>
+
+        </div>
+
+
+        <div class="journey-track">
+
+            <!-- Fibre -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1582738411706-bfc8e691d1c2?auto=format&fit=crop&w=700&q=80"
+                        alt="Cotton Fibre">
+
+                </div>
+
+                <div class="journey-number">01</div>
+
+                <h3>Fibre</h3>
+
+                <p>
+                    Carefully selected raw materials.
+                </p>
+
+            </div>
+
+
+            <!-- Spinning -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1598030304671-5aa1f53c2b8c?auto=format&fit=crop&w=700&q=80"
+                        alt="Spinning">
+
+                </div>
+
+                <div class="journey-number">02</div>
+
+                <h3>Spinning</h3>
+
+                <p>
+                    Transforming fibres into yarn.
+                </p>
+
+            </div>
+
+
+            <!-- Weaving -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?auto=format&fit=crop&w=700&q=80"
+                        alt="Weaving">
+
+                </div>
+
+                <div class="journey-number">03</div>
+
+                <h3>Weaving</h3>
+
+                <p>
+                    Where structure takes shape.
+                </p>
+
+            </div>
+
+
+            <!-- Dyeing -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1604881991720-f91add269bed?auto=format&fit=crop&w=700&q=80"
+                        alt="Dyeing">
+
+                </div>
+
+                <div class="journey-number">04</div>
+
+                <h3>Dyeing</h3>
+
+                <p>
+                    Adding colour with care.
+                </p>
+
+            </div>
+
+
+            <!-- Finishing -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=700&q=80"
+                        alt="Finishing">
+
+                </div>
+
+                <div class="journey-number">05</div>
+
+                <h3>Finishing</h3>
+
+                <p>
+                    Enhancing quality and performance.
+                </p>
+
+            </div>
+
+
+            <!-- Fabric -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1558769132-cb1aea458c5e?auto=format&fit=crop&w=700&q=80"
+                        alt="Fabric">
+
+                </div>
+
+                <div class="journey-number">06</div>
+
+                <h3>Fabric</h3>
+
+                <p>
+                    Premium textiles crafted for purpose.
+                </p>
+
+            </div>
+
+
+            <!-- Final Product -->
+
+            <div class="journey-item">
+
+                <div class="journey-image">
+
+                    <img
+                        src="https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?auto=format&fit=crop&w=700&q=80"
+                        alt="Final Product">
+
+                </div>
+
+                <div class="journey-number">07</div>
+
+                <h3>Final Product</h3>
+
+                <p>
+                    From thread to finished creation.
+                </p>
+
+            </div>
+
+        </div>
+
+        <div style="text-align:center;margin-top:50px;">
+
+            <a href="#" class="btn">
+                Explore The Full Journey →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PRODUCTS
+========================================================= -->
+
+<section class="products reveal" id="products">
+
+    <div class="container">
+
+        <div class="products-header">
+
+            <div>
+
+                <div class="section-label">
+                    Our Products
+                </div>
+
+                <h2 class="section-title">
+                    Textiles Designed<br>
+                    For Every Possibility
+                </h2>
+
+            </div>
+
+            <a href="#" class="btn">
+                Explore Products →
+            </a>
+
+        </div>
+
+
+        <div class="product-grid">
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1543076447-215ad9ba6923?auto=format&fit=crop&w=900&q=80"
+                    alt="Cotton Fabrics">
+
+                <div class="product-overlay">
+
+                    <h3>Cotton Fabrics</h3>
+
+                    <p>
+                        Natural comfort. Refined quality.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1618453292507-4959ece6429e?auto=format&fit=crop&w=900&q=80"
+                    alt="Knitted Fabrics">
+
+                <div class="product-overlay">
+
+                    <h3>Knitted Fabrics</h3>
+
+                    <p>
+                        Flexible textiles for modern applications.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1558171813-4c088753af8f?auto=format&fit=crop&w=900&q=80"
+                    alt="Woven Fabrics">
+
+                <div class="product-overlay">
+
+                    <h3>Woven Fabrics</h3>
+
+                    <p>
+                        Strength, structure and sophistication.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="product-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1525507119028-ed4c629a60a3?auto=format&fit=crop&w=900&q=80"
+                    alt="Apparel">
+
+                <div class="product-overlay">
+
+                    <h3>Apparel</h3>
+
+                    <p>
+                        From textile to finished expression.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     QUALITY & TECHNOLOGY
+========================================================= -->
+
+<section class="quality reveal" id="quality">
+
+    <div class="container">
+
+        <div class="quality-grid">
+
+            <div class="quality-image">
+
+                <img
+                    src="https://images.unsplash.com/photo-1567361808960-dec9cb578182?auto=format&fit=crop&w=1200&q=85"
+                    alt="Textile Factory">
+
+            </div>
+
+
+            <div>
+
+                <div class="section-label">
+                    Quality & Technology
+                </div>
+
+                <h2 class="section-title">
+                    Precision Behind Every Thread
+                </h2>
+
+                <p class="section-description">
+
+                    Modern infrastructure, advanced technology and
+                    skilled people come together to ensure consistency
+                    and quality at every stage.
+
+                </p>
+
+
+                <div class="quality-features">
+
+                    <div class="feature">
+
+                        <h4>Modern Machinery</h4>
+
+                        <p>
+                            Advanced production capabilities.
+                        </p>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <h4>Quality Control</h4>
+
+                        <p>
+                            Rigorous testing at every stage.
+                        </p>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <h4>Skilled Workforce</h4>
+
+                        <p>
+                            Experience behind every process.
+                        </p>
+
+                    </div>
+
+                    <div class="feature">
+
+                        <h4>Certifications</h4>
+
+                        <p>
+                            International quality standards.
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <br><br>
+
+                <a href="#" class="btn">
+                    Our Technology →
+                </a>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SUSTAINABILITY
+========================================================= -->
+
+<section class="sustainability reveal">
+
+    <div class="container">
+
+        <div class="sustainability-header">
+
+            <div class="section-label">
+                Sustainability
+            </div>
+
+            <h2 class="section-title">
+                Better Textiles.<br>
+                Better Tomorrow.
+            </h2>
+
+            <p class="section-description">
+                We are committed to responsible production,
+                sustainable practices and a better future.
+            </p>
+
+        </div>
+
+
+        <div class="sustainability-stats">
+
+            <div class="sustainability-stat">
+
+                <div class="number">XX%</div>
+
+                <p>
+                    Water Recycled
+                </p>
+
+            </div>
+
+
+            <div class="sustainability-stat">
+
+                <div class="number">XX%</div>
+
+                <p>
+                    Renewable Energy
+                </p>
+
+            </div>
+
+
+            <div class="sustainability-stat">
+
+                <div class="number">XX%</div>
+
+                <p>
+                    Sustainable Materials
+                </p>
+
+            </div>
+
+
+            <div class="sustainability-stat">
+
+                <div class="number">XX</div>
+
+                <p>
+                    Tonnes Waste Reduced
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     SOCIAL IMPACT
+========================================================= -->
+
+<section class="impact reveal" id="impact">
+
+    <div class="container">
+
+        <div class="impact-header">
+
+            <div class="section-label">
+                Social Impact
+            </div>
+
+            <h2 class="section-title">
+                Threads That Connect Communities
+            </h2>
+
+            <p class="section-description">
+
+                Our responsibility extends beyond textiles.
+                Through meaningful initiatives, we strive to
+                support people and communities around us.
+
+            </p>
+
+        </div>
+
+
+        <div class="impact-grid">
+
+            <div class="impact-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1504159506876-f8338247a14a?auto=format&fit=crop&w=800&q=80"
+                    alt="Education">
+
+                <div class="impact-card-content">
+
+                    <h3>Education</h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="impact-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1576091160399-112ba8d25d1d?auto=format&fit=crop&w=800&q=80"
+                    alt="Healthcare">
+
+                <div class="impact-card-content">
+
+                    <h3>Healthcare</h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="impact-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1559027615-cd4628902d4a?auto=format&fit=crop&w=800&q=80"
+                    alt="Community Support">
+
+                <div class="impact-card-content">
+
+                    <h3>Community Support</h3>
+
+                </div>
+
+            </div>
+
+
+            <div class="impact-card">
+
+                <img
+                    src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?auto=format&fit=crop&w=800&q=80"
+                    alt="Livelihood">
+
+                <div class="impact-card-content">
+
+                    <h3>Livelihood</h3>
+
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div style="text-align:center;margin-top:50px;">
+
+            <a href="#" class="btn">
+                Explore Our Impact →
+            </a>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     GLOBAL PRESENCE
+========================================================= -->
+
+<section class="global reveal">
+
+    <div class="container">
+
+        <div class="global-grid">
+
+            <div>
+
+                <div class="section-label">
+                    Global Presence
+                </div>
+
+                <h2 class="section-title">
+                    From Our Roots<br>
+                    To The World
+                </h2>
+
+                <p class="section-description">
+
+                    Proudly serving customers across the globe
+                    with consistent quality, reliable production
+                    and a commitment to excellence.
+
+                </p>
+
+                <br>
+
+                <a href="#" class="btn">
+                    Our Global Presence →
+                </a>
+
+            </div>
+
+
+            <div class="world-map">
+
+                <!-- Replace this with a proper SVG world map later -->
+
+                <img
+                    src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg"
+                    alt="Global Presence">
+
+                <span class="map-pin pin-india"></span>
+                <span class="map-pin pin-europe"></span>
+                <span class="map-pin pin-usa"></span>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     PHILOSOPHY
+========================================================= -->
+
+<section class="philosophy reveal">
+
+    <div class="container">
+
+        <div class="philosophy-grid">
+
+            <div>
+
+                <div class="section-label">
+                    Our Philosophy
+                </div>
+
+                <h2>
+
+                    We Don't Just<br>
+                    Make Fabric.<br>
+
+                    <span>
+                        We Create What Comes Next.
+                    </span>
+
+                </h2>
+
+            </div>
+
+
+            <div class="principles">
+
+                <div class="principle">
+
+                    <h3>Craft</h3>
+
+                    <p>
+                        Attention to every detail.
+                    </p>
+
+                </div>
+
+
+                <div class="principle">
+
+                    <h3>Innovation</h3>
+
+                    <p>
+                        Technology that moves textiles forward.
+                    </p>
+
+                </div>
+
+
+                <div class="principle">
+
+                    <h3>Purpose</h3>
+
+                    <p>
+                        Business that creates meaningful impact.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FINAL CTA
+========================================================= -->
+
+<section class="final-cta reveal" id="contact">
+
+    <div class="container">
+
+        <div class="section-label">
+            Let's Work Together
+        </div>
+
+        <h2>
+            Let's Create<br>
+            Something Exceptional.
+        </h2>
+
+        <p>
+
+            Whether you're looking for a textile partner,
+            exploring new possibilities or simply want to
+            know more about us, we'd love to hear from you.
+
+        </p>
+
+        <a href="#" class="btn btn-primary">
+            Start A Conversation →
+        </a>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     FOOTER
+========================================================= -->
+
+<footer>
+
+    <div class="container">
+
+        <div class="footer-grid">
+
+            <div>
+
+                <div class="footer-logo">
+                    TEXTILE
+                </div>
+
+                <p class="footer-description">
+                    Crafting textiles.<br>
+                    Creating possibilities.
+                </p>
+
+            </div>
+
+
+            <div>
+
+                <h4>Company</h4>
+
+                <ul>
+                    <li><a href="#">Our Story</a></li>
+                    <li><a href="#">Our Journey</a></li>
+                    <li><a href="#">Quality</a></li>
+                    <li><a href="#">Technology</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>Impact</h4>
+
+                <ul>
+                    <li><a href="#">Sustainability</a></li>
+                    <li><a href="#">Social Impact</a></li>
+                    <li><a href="#">Community</a></li>
+                </ul>
+
+            </div>
+
+
+            <div>
+
+                <h4>Contact</h4>
+
+                <ul>
+                    <li>info@company.com</li>
+                    <li>+91 XXXXX XXXXX</li>
+                    <li>India</li>
+                </ul>
+
+            </div>
+
+        </div>
+
+
+        <div class="footer-bottom">
+
+            <span>
+                © 2026 Company Name. All Rights Reserved.
+            </span>
+
+            <span>
+                Privacy Policy &nbsp; | &nbsp; Terms
+            </span>
+
+        </div>
+
+    </div>
+
+</footer>
+
+
+<!-- =========================================================
+     JAVASCRIPT
+========================================================= -->
+
+<script>
+
+    /* Navbar background on scroll */
+
+    const header = document.getElementById("header");
+
+    window.addEventListener("scroll", () => {
+
+        if (window.scrollY > 50) {
+            header.classList.add("scrolled");
+        }
+        else {
+            header.classList.remove("scrolled");
+        }
+
+    });
+
+
+    /* Scroll reveal animation */
+
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(
+
+        (entries) => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("active");
+
+                }
+
+            });
+
+        },
+
+        {
+            threshold: 0.15
+        }
+
+    );
+
+
+    reveals.forEach(element => {
+
+        observer.observe(element);
+
+    });
+
+</script>
+
+</body>
+</html>
